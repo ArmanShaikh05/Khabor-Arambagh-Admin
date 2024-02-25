@@ -1,0 +1,832 @@
+@import url("https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Lato:ital,wght@1,100&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@200&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins";
+  overflow-x: hidden;
+}
+
+:root {
+  --background-color: #4b4453;
+  --background-light-variant: #756e7e;
+  --primary-color: white;
+  --border: 2px solid black;
+  --box-shadow-light: 0 0 0.5rem #756e7e7f;
+  --box-shadow-dark: 0 0 0.7rem rgba(0, 0, 0, 0.8);
+  --hover-color:  rgb(167, 162, 162)
+}
+
+/* REUSED COMPONENTS */
+.custom-scroolbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  margin-top: 2rem;
+}
+
+.custom-scroolbar::-webkit-scrollbar-track {
+  background-color: #cacaca;
+  border-radius: 4px;
+}
+
+.custom-scroolbar::-webkit-scrollbar-thumb {
+  background-color: var(--background-color);
+  border-radius: 4px;
+}
+
+.content-wrapper {
+  min-height: 100vh;
+  margin-top: 5rem;
+}
+
+/* DESIGNING THE NAVBAR */
+
+nav {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 4rem;
+}
+
+a {
+  color: white;
+}
+
+.navbar {
+  width: 100%;
+  height: 100%;
+  margin-inline: auto;
+  align-items: center;
+  display: flex;
+  padding: 0 3rem;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 3.7rem;
+  width: 4.25rem;
+  background: url(./Assets/logo.png);
+  background-size: cover;
+}
+
+.navbar .navlist {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2.5rem;
+  padding: 0 2rem 0 0;
+  cursor: pointer;
+}
+
+.login {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  display: none;
+}
+
+.login i {
+  border: 2px solid var(--primary-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.navbar .navitems {
+  position: relative;
+  width: max-content;
+}
+
+.navbar .navitems:hover {
+  transform: scale(1.08);
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -webkit-transform: scale(1.08);
+  -moz-transform: scale(1.08);
+  -ms-transform: scale(1.08);
+  -o-transform: scale(1.08);
+}
+
+.navbar .navitems::after,
+.second-nav-item::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: red;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.navbar .navitems:hover::after,
+.second-nav-item:hover::after {
+  width: 100%;
+}
+
+.addNewsBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.addNewsBtn h2 {
+  font-size: 1rem;
+  display: block;
+  margin-left: 0.8rem;
+}
+
+.addNewsBtn:hover {
+  background-color: rgb(198, 194, 202);
+}
+
+.search-btn {
+  height: 100%;
+  width: 2.5rem;
+  color: white;
+  background-color: var(--background-light-variant);
+  border: none;
+  outline: none;
+  border-radius: 6px 0 0 6px;
+  cursor: pointer;
+}
+
+.search-box {
+  width: 30rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+.search-area {
+  width: 100%;
+  height: 100%;
+  padding-left: 0.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0 6px 6px 0;
+}
+
+/* DESIGNING THE SIDEBAR */
+.sidebar{
+  height: 100vh;
+  width: 20rem;
+  background: var(--background-color);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  padding: 0.5rem 0rem;
+  transition: all 0.5s ease;
+}
+
+.bars,.cross{
+  cursor: pointer;
+  padding: 0.5rem 0.8rem ;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.bars:hover, .cross:hover{
+  background-color: var(--background-light-variant);
+}
+
+
+.sidebar.active{
+  right: 0;
+}
+
+.sidebar.inactive{
+  right: -20rem;
+}
+
+.close-btn{
+  padding: 1rem;
+  font-size: 1.4rem;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 3rem;
+  padding-right: 2rem;
+}
+
+.sidebar .navlist{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.sidebar .navitems{
+  width: 100%;
+  padding: 2rem;
+  margin-top: 0;
+  transition: all 0.4s ease;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebar .navitems:hover{
+  background: var(--background-light-variant);
+}
+
+.sidebar .navitems.active{
+  background-color: var(--background-light-variant);
+}
+
+
+
+/* DESIGNING THE NEWS CARD LIST */
+
+.newsCardList {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.3rem;
+}
+
+.newsCard {
+  background-color: var(--background-color);
+  height: 23.5rem;
+  width: 30rem;
+  border-radius: 10px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform: scale(0.93);
+  transition: all 0.4s ease;
+}
+
+.newsCard:hover {
+  transform: scale(1);
+}
+
+.newsTitle {
+  width: 100%;
+  height: 4.8rem;
+  padding: 1rem 0.8rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(42, 41, 41, 0.7), transparent);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.newsDescription {
+  padding: 0.3rem 0.8rem;
+  min-height: 5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.newsImage {
+  height: 15rem;
+  width: 100%;
+  background-size: cover;
+}
+
+.newsCreatedAt {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.newsDetails {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.newsCardOptions {
+  display: flex;
+  position: relative;
+  z-index: 10;
+}
+
+.newsOptionsIcon {
+  margin: 0 0.4rem 0.4rem 0;
+  padding: 0.7rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+
+.deleteNewsBtn {
+  background-color: var(--background-color);
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+
+.newsCard:hover .newsOptionsIcon {
+  opacity: 1;
+}
+
+.newsOptionsIcon:hover {
+  background: var(--background-light-variant);
+}
+
+/* DESIGNING THE NEWS FORM */
+
+.newsform {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  margin-top: 5rem;
+}
+
+.newsform input {
+  width: 100%;
+  min-height: 3rem;
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  margin: 0.8rem 0;
+  border-radius: 5px;
+}
+
+.newsform .createBtn {
+  width: 100%;
+  height: 3rem;
+  margin: 2rem 0;
+  border-radius: 15px;
+  color: white;
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+.newsform .cancelBtn {
+  width: 100%;
+  height: 3rem;
+  margin: 2rem 0;
+  border-radius: 15px;
+  color: black;
+  border: none;
+  outline: none;
+  background-color: rgb(209, 200, 200);
+  cursor: pointer;
+}
+
+.newsform .disabledBtn {
+  pointer-events: none;
+  cursor: not-allowed !important;
+  background-color: #95909b;
+}
+
+.newsform .textArea {
+  height: 18rem;
+  margin: 0 0 2rem 0;
+}
+
+.newsform #file {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #756e7e;
+  width: max-content;
+  padding: 0.4rem;
+  border-radius: 6px;
+  color: white;
+}
+
+.categories p {
+  pointer-events: none;
+}
+
+.categories .deleteCatBtn {
+  pointer-events: all;
+  cursor: pointer;
+  height: 25px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.categories .deleteCatBtn:hover {
+  background-color: gray;
+}
+
+.categories-box {
+  margin: 0.5rem 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-label {
+  display: flex;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.addCategoryBtn {
+  height: 3rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: var(--background-light-variant);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.addCategoryBtn:hover {
+  background-color: var(--background-color);
+}
+
+.editPostBtn-Container {
+  display: flex;
+  gap: 3rem;
+  width: 70%;
+  margin: auto;
+}
+
+.select-area{
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.select-area select{
+  height: 100%;
+  width: 20%;
+  margin: 0 1rem;
+  border-radius: 10px;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+.select-option{
+  height: 5rem;
+}
+
+/* DESIGNING THE FOOTER SECTION */
+
+.footer {
+  height: max-content;
+  width: 100vw;
+  padding: 1rem 0;
+  background-color: var(--background-color);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  color: white;
+}
+
+.footer-address {
+  width: 85%;
+  color: #cacaca;
+  pointer-events: none;
+}
+
+.footer-title {
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 1rem 0;
+  pointer-events: none;
+}
+
+.footer-title span {
+  font-weight: 700;
+  pointer-events: none;
+}
+.footer-box {
+  border-right: 2px solid var(--background-light-variant);
+  padding: 1rem 2rem;
+}
+
+.footer-box a {
+  color: white;
+}
+
+.footer-list-item a {
+  color: white;
+  line-height: 2.3rem;
+}
+
+.footer-list-item a:hover {
+  text-decoration: underline;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.footer-social i {
+  font-size: 1.2rem;
+}
+
+.footer-copyright {
+  height: 5vh;
+  background-color: var(--background-color);
+  width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid var(--background-light-variant);
+}
+
+/* DESIGNING THE LOADER */
+.loader-box {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  height: 8rem;
+  aspect-ratio: 1 / 1;
+  border-top: 6px solid var(--background-light-variant);
+  border-bottom: 10px solid transparent;
+  border-left: 6px solid var(--background-light-variant);
+  border-right: 10px solid transparent;
+  border-radius: 50%;
+  animation: rotate 0.5s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* DESIGNING THE DELETE OVERLAY */
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-box {
+  height: 30%;
+  width: 50%;
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+  gap: 1rem;
+  border-radius: 10px;
+  color: white;
+  padding: 1rem;
+  background-color: var(--background-light-variant);
+}
+
+.overlay-data h4 {
+  font-weight: 300;
+  margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.overlay-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.overlay-buttons .cancelBtn {
+  width: 30%;
+  height: 3rem;
+  border-radius: 15px;
+  color: black;
+  border: none;
+  outline: none;
+  background-color: rgb(209, 200, 200);
+  cursor: pointer;
+}
+
+.overlay-buttons .deleteBtn {
+  width: 30%;
+  height: 3rem;
+  border-radius: 15px;
+  color: white;
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+
+/* DESIGNING THE NEWSPAPER SECTION */
+
+.newspaper-container {
+  max-width: 1100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 5rem 0;
+}
+
+.newspaper-section{
+  width: 70%;
+  margin: auto;
+  height: 100vh;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.5rem;
+  margin-top: 5rem;
+}
+
+.newspaper-card{
+  display: flex;
+  width: 100%;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: var(--background-light-variant);
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.newspaper-details{
+  display: flex;
+  width: 80%;
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+
+.newspaper-titles{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.newspaper-deleteBtn{
+ padding: 0.8rem;
+ border-radius: 50%;
+ transition: all 0.4s ease;
+}
+
+.newspaper-deleteBtn:hover{
+  background-color: var(--hover-color);
+}
+
+.newspaper-card button{
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* DESIGNING THE SEARCH AREA PAGE */
+
+.search-bar{
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--background-light-variant);
+  outline: none;
+  position: relative;
+}
+
+.search-box{
+  width: 90%;
+  margin: auto;
+  padding: auto;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-submit-btn{
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.search-submit-btn:hover{
+  background: var(--background-light-variant);
+}
+
+.parent-search{
+  position: relative;
+  width: 80%;
+
+}
+
+.clear-search-btn{
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  background:transparent;
+  border: none;
+  outline: none;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.search-result-box{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 2rem;
+  row-gap: 1rem;
+}
+
+.search-result{
+  width: max-content;
+  height: 29rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--box-shadow-light);
+  cursor: pointer;
+  scale: 0.95;
+  transition: all 0.4s ease;
+}
