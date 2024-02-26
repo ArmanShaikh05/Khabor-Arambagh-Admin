@@ -16,7 +16,7 @@ const PdfSection = () => {
   },[reducerValue,loader]);
 
   const fetchNewspapers = async () => {
-    const response = await axios.get(`${process.env.SERVER
+    const response = await axios.get(`${process.env.REACT_APP_SERVER
 }/newspaper`);
     setNewspapers(response.data);
   };

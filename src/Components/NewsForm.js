@@ -86,7 +86,7 @@ const NewsForm = () => {
       });
       data.set("file", file[0]);
 
-      const response = await fetch(`${process.env.SERVER
+      const response = await fetch(`${process.env.REACT_APP_SERVER
 }/create`, {
         method: "POST",
         body: data,

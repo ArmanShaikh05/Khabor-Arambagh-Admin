@@ -65,7 +65,7 @@ const EditPost = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`${process.env.SERVER}/edit/${id}`)
+    fetch(`${process.env.REACT_APP_SERVER}/edit/${id}`)
       .then((response) => {
         response.json().then((NewsInfo) => {
           setTitle(NewsInfo.title);
@@ -97,7 +97,7 @@ const EditPost = () => {
       data.set("file", file?.[0]);
     }
 
-    const response = await fetch(`${process.env.SERVER}/update/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_SERVER}/update/${id}`, {
       method: "PUT",
       body: data,
     });

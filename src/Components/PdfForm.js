@@ -26,7 +26,7 @@ const PdfForm = () => {
         data.set("title", title);
         data.set("newspaper", newspaper[0]);
 
-        const response = await fetch(`${process.env.SERVER
+        const response = await fetch(`${process.env.REACT_APP_SERVER
 }/create/newspaper`, {
           method: "POST",
           body: data,

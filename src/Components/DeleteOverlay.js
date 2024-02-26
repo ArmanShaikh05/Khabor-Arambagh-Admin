@@ -7,7 +7,7 @@ const DeleteOverlay = ({ open, setOpen, title, forceUpdate, id }) => {
   const navigate = useNavigate();
 
   const handledelete = async () => {
-    const response = await axios.delete(`${process.env.SERVER}/delete/${id}`);
+    const response = await axios.delete(`${process.env.REACT_APP_SERVER}/delete/${id}`);
 
     if (response) {
       toast.success("Deleted Successfully");

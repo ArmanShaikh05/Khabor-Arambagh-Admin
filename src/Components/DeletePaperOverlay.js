@@ -9,7 +9,7 @@ const DeletePaperOverlay = ({ open , setOpen , title , forceUpdate , id}) => {
 
 
   const handledelete = async () => {
-    const response = await axios.delete(`${process.env.SERVER
+    const response = await axios.delete(`${process.env.REACT_APP_SERVER
 }/newspaper/delete/${id}`);
 
     if (response) {

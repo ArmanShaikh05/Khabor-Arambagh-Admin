@@ -17,7 +17,7 @@ const SearchNews = () => {
 
       async function fetchNews() {
         try {
-          const data = await axios.get(`${process.env.SERVER
+          const data = await axios.get(`${process.env.REACT_APP_SERVER
 }/news?search=${search}`);
           if(data){
               setNewsArray(data.data);

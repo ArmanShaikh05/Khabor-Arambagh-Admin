@@ -18,10 +18,10 @@ const News = ({ title, summary, image, createdAt, _id, forceUpdate }) => {
         forceUpdate={forceUpdate}
         id={_id}
       />
-      <div className="newsCard" onClick={(e)=>navigate(`/edit/${_id}`)}>
+      <div className="newsCard">
         <h3 className="newsTitle">{title}</h3>
         <img
-          src={`${process.env.SERVER
+          src={`${process.env.REACT_APP_SERVER
 }/${image}`}
           className="newsImage"
           alt=""

@@ -13,7 +13,7 @@ const NewsList = () => {
 
   const fetchPost = async () => {
     setLoader(true)
-    const res = await axios.get(`${process.env.SERVER
+    const res = await axios.get(`${process.env.REACT_APP_SERVER
 }/news` + search);
     if (res.data.length === 0) {
       setNoResult(true);
