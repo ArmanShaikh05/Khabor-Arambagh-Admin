@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer, useState } from "react";
 import News from "./News";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 
 const NewsList = () => {
-  const { search } = useLocation();
+  // const { search } = useLocation();
   const [noResult, setNoResult] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -14,9 +14,7 @@ const NewsList = () => {
   const fetchPost = async () => {
     try {
       setLoader(true);
-      const res = await axios.get(
-        `${process.env.REACT_APP_SERVER}/news` + search
-      );
+      const res = await axios.get(`${process.env.REACT_APP_SERVER}/news`);
       if (res.data.length === 0) {
         setNoResult(true);
       } else {
@@ -33,7 +31,7 @@ const NewsList = () => {
     window.scrollTo(0, 0);
     fetchPost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reducerValue, search]);
+  }, [reducerValue]);
 
   return (
     <div className="content-wrapper custom-scroolbar">
