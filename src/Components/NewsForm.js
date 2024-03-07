@@ -4,7 +4,6 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 const NewsForm = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
@@ -80,14 +79,13 @@ const NewsForm = () => {
       data.set("title", title);
       data.set("summary", summary);
       data.set("content", content);
-      data.set("section",section);
+      data.set("section", section);
       cats.forEach((cat) => {
         data.append("category[]", cat);
       });
       data.set("file", file[0]);
 
-      const response = await fetch(`${process.env.REACT_APP_SERVER
-}/create`, {
+      const response = await fetch(`${process.env.REACT_APP_SERVER}/create`, {
         method: "POST",
         body: data,
       });
@@ -166,7 +164,7 @@ const NewsForm = () => {
 
         <div className="select-area">
           <label>Select News Criteria</label>
-          <select onChange={(e)=>setSection(e.target.value)} value={section} >
+          <select onChange={(e) => setSection(e.target.value)} value={section}>
             <option className="select-option">Local News</option>
             <option>National News</option>
             <option>World News</option>

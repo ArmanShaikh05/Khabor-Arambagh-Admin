@@ -4,10 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import DeleteOverlay from "./DeleteOverlay";
 
-
 const News = ({ title, summary, image, createdAt, _id, forceUpdate }) => {
   const [showOverlay, setShowOverlay] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -21,8 +20,7 @@ const News = ({ title, summary, image, createdAt, _id, forceUpdate }) => {
       <div className="newsCard">
         <h3 className="newsTitle">{title}</h3>
         <img
-          src={`${process.env.REACT_APP_SERVER
-}/${image}`}
+          src={`${image.url}`}
           className="newsImage"
           alt=""
         />
