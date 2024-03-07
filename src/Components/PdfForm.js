@@ -26,7 +26,7 @@ const PdfForm = () => {
         data.set("newspaper", newspaper[0]);
 
         const response = await fetch(
-          `${process.env.REACT_APP_SERVER}/create/newspaper`,
+          `${process.env.REACT_APP_SERVER}/newspaper/create`,
           {
             method: "POST",
             body: data,
@@ -39,6 +39,7 @@ const PdfForm = () => {
         }
       } catch (error) {
         toast.error(error.message);
+        console.log(error)
       }
     }
   };
