@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import ReactQuill from "react-quill";
@@ -87,12 +88,14 @@ const NewsForm = () => {
 
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER}/create`, {
-          method: "POST",
-          body: data,
-        });
+        // const response = await fetch(`${process.env.REACT_APP_SERVER}/create`, {
+        //   method: "POST",
+        //   body: data,
+        // });
+
+        const response = await axios.post(`${process.env.REACT_APP_SERVER}/create`, data);
   
-        if (response.ok) {
+        if (response) {
           toast.success("Created Successfully");
           setRedirect(true);
         }
