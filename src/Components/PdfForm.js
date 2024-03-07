@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-
 const PdfForm = () => {
   const [title, setTitle] = useState("");
   const [newspaper, setNewspaper] = useState("");
@@ -26,11 +25,13 @@ const PdfForm = () => {
         data.set("title", title);
         data.set("newspaper", newspaper[0]);
 
-        const response = await fetch(`${process.env.REACT_APP_SERVER
-}/create/newspaper`, {
-          method: "POST",
-          body: data,
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER}/create/newspaper`,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
 
         if (response.ok) {
           toast.success("Created Successfully");

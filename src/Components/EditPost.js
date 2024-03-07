@@ -97,14 +97,21 @@ const EditPost = () => {
       data.set("file", file?.[0]);
     }
 
-    const response = await fetch(`${process.env.REACT_APP_SERVER}/update/${id}`, {
-      method: "PUT",
-      body: data,
-    });
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER}/update/${id}`,
+        {
+          method: "PUT",
+          body: data,
+        }
+      );
 
-    if (response.ok) {
-      setRedirect(true);
-      toast.success("Updated Successfully");
+      if (response.ok) {
+        setRedirect(true);
+        toast.success("Updated Successfully");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

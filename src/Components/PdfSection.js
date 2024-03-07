@@ -3,8 +3,6 @@ import axios from "axios";
 import Loader from "./Loader";
 import NewsPaperCard from "./NewsPaperCard";
 
-
-
 const PdfSection = () => {
   const [newspapers, setNewspapers] = useState([]);
   const [loader, setLoader] = useState(true);
@@ -13,20 +11,26 @@ const PdfSection = () => {
   useEffect(() => {
     fetchNewspapers();
     setLoader(false);
-  },[reducerValue,loader]);
+  }, [reducerValue, loader]);
 
   const fetchNewspapers = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER
-}/newspaper`);
-    setNewspapers(response.data);
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER}/newspaper`
+      );
+      setNewspapers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div className="content-wrapper newspaper-section ">
       {loader ? (
         <Loader />
       ) : newspapers ? (
         newspapers.map((item, index) => (
-          <NewsPaperCard key={index} {...item}  forceUpdate={forceUpdate}/>
+          <NewsPaperCard key={index} {...item} forceUpdate={forceUpdate} />
         ))
       ) : (
         <h1>No newspapers</h1>

@@ -12,17 +12,21 @@ const NewsList = () => {
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const fetchPost = async () => {
-    setLoader(true);
-    const res = await axios.get(
-      `${process.env.REACT_APP_SERVER}/news` + search
-    );
-    if (res.data.length === 0) {
-      setNoResult(true);
-    } else {
-      setNoResult(false);
+    try {
+      setLoader(true);
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER}/news` + search
+      );
+      if (res.data.length === 0) {
+        setNoResult(true);
+      } else {
+        setNoResult(false);
+      }
+      setPosts(res.data);
+      setLoader(false);
+    } catch (error) {
+      console.log(error);
     }
-    setPosts(res.data);
-    setLoader(false);
   };
 
   useEffect(() => {

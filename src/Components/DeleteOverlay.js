@@ -4,15 +4,22 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const DeleteOverlay = ({ open, setOpen, title, forceUpdate, id }) => {
+  
   const navigate = useNavigate();
 
   const handledelete = async () => {
-    const response = await axios.delete(`${process.env.REACT_APP_SERVER}/delete/${id}`);
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_SERVER}/delete/${id}`
+      );
 
-    if (response) {
-      toast.success("Deleted Successfully");
-      navigate("/");
-      forceUpdate();
+      if (response) {
+        toast.success("Deleted Successfully");
+        navigate("/");
+        forceUpdate();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

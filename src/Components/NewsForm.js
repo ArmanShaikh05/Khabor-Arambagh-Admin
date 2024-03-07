@@ -85,15 +85,21 @@ const NewsForm = () => {
       });
       data.set("file", file[0]);
 
-      const response = await fetch(`${process.env.REACT_APP_SERVER}/create`, {
-        method: "POST",
-        body: data,
-      });
 
-      if (response.ok) {
-        toast.success("Created Successfully");
-        setRedirect(true);
+      try {
+        const response = await fetch(`${process.env.REACT_APP_SERVER}/create`, {
+          method: "POST",
+          body: data,
+        });
+  
+        if (response.ok) {
+          toast.success("Created Successfully");
+          setRedirect(true);
+        }
+      } catch (error) {
+        console.log(error)
       }
+     
     }
   };
 

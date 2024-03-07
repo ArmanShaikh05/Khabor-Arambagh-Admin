@@ -3,19 +3,22 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-
-const DeletePaperOverlay = ({ open , setOpen , title , forceUpdate , id}) => {
+const DeletePaperOverlay = ({ open, setOpen, title, forceUpdate, id }) => {
   const navigate = useNavigate();
 
-
   const handledelete = async () => {
-    const response = await axios.delete(`${process.env.REACT_APP_SERVER
-}/newspaper/delete/${id}`);
-
-    if (response) {
-      toast.success("Deleted Successfully");
-      navigate("/newspaper");
-      forceUpdate()
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_SERVER}/newspaper/delete/${id}`
+      );
+  
+      if (response) {
+        toast.success("Deleted Successfully");
+        navigate("/newspaper");
+        forceUpdate();
+      }
+    } catch (error) {
+      console.log(error)
     }
   };
 
@@ -32,7 +35,7 @@ const DeletePaperOverlay = ({ open , setOpen , title , forceUpdate , id}) => {
               className="cancelBtn"
               type="button"
               onClick={() => {
-                setOpen(false)
+                setOpen(false);
               }}
             >
               Cancel
@@ -43,7 +46,6 @@ const DeletePaperOverlay = ({ open , setOpen , title , forceUpdate , id}) => {
           </div>
         </div>
       </div>
-    
     );
   }
 };
