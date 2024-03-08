@@ -93,11 +93,7 @@ const NewsForm = () => {
         //   body: data,
         // });
 
-        const response = await axios.post(`${process.env.REACT_APP_SERVER}/create`,data,{
-          headers:{
-            "Content-Type": "multipart/form-data"
-          }
-        });
+        const response = await axios.post(`${process.env.REACT_APP_SERVER}/create`,data);
   
         if (response) {
           toast.success("Created Successfully");
