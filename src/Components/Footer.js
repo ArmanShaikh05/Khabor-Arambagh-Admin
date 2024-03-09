@@ -96,8 +96,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-copyright">
-          Copyright © 2023 KhaborArambagh. The KhaborArambagh is not responsible
-          for the content of external sites.
+          <p className="footer-text">
+            Copyright © 2023 KhaborArambagh. The KhaborArambagh is not responsible
+            for the content of external sites.
+          </p>
         
       </div>
     </footer>
