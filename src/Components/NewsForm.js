@@ -75,6 +75,8 @@ const NewsForm = () => {
       toast.error("Summary is Required");
     } else if (content.length === 0) {
       toast.error("Content is Required");
+    } else if(!file){
+      toast.error("Please Add an Image")
     } else {
       const data = new FormData();
       data.set("title", title);
