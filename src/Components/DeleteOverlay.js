@@ -14,9 +14,15 @@ const DeleteOverlay = ({ open, setOpen, title, forceUpdate, id }) => {
       );
 
       if (response) {
-        toast.success("Deleted Successfully");
-        navigate("/");
-        forceUpdate();
+        if(response.data.success === true){
+          toast.success(response.data.message);
+          navigate("/");
+          forceUpdate();
+        }else{
+          toast.error(response.data.message);
+          navigate("/");
+          forceUpdate();
+        }
       }
     } catch (error) {
       console.log(error);

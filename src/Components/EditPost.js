@@ -111,6 +111,7 @@ const EditPost = () => {
         toast.success("Updated Successfully");
       }
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };

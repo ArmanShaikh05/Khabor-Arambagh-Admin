@@ -11,14 +11,20 @@ const DeletePaperOverlay = ({ open, setOpen, title, forceUpdate, id }) => {
       const response = await axios.delete(
         `${process.env.REACT_APP_SERVER}/newspaper/delete/${id}`
       );
-  
+
       if (response) {
-        toast.success("Deleted Successfully");
-        navigate("/newspaper");
-        forceUpdate();
+        if (response.data.success === true) {
+          toast.success(response.data.message);
+          navigate("/newspaper");
+          forceUpdate();
+        } else {
+          toast.error(response.data.message);
+          navigate("/newspaper");
+          forceUpdate();
+        }
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 

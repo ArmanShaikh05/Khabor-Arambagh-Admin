@@ -90,16 +90,17 @@ const NewsForm = () => {
 
 
       try {
-        // const response = await fetch(`${process.env.REACT_APP_SERVER}/create`, {
-        //   method: "POST",
-        //   body: data,
-        // });
 
         const response = await axios.post(`${process.env.REACT_APP_SERVER}/create`,data);
-  
         if (response) {
-          toast.success("Created Successfully");
-          setRedirect(true);
+          if(response.data.success === true){
+            toast.success(response.data.message);
+            setRedirect(true);
+          }
+          else{
+            toast.error(response.data.message);
+            setRedirect(false)
+          }
         }
       } catch (error) {
         console.log(error)

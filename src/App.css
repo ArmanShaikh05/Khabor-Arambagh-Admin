@@ -643,13 +643,13 @@ a {
   align-items: center;
   z-index: 20;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .overlay-box {
   height: 30%;
-  width: 50%;
+  width: 95vw;
   display: grid;
   grid-template-rows: 4fr 1fr;
   gap: 1rem;

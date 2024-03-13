@@ -9,6 +9,7 @@ import News from "./News";
 const SearchNews = () => {
   const [search, setSearch] = useState("");
   const [newsArray, setNewsArray] = useState([]);
+  const [noResult, setNoResult] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,8 +20,14 @@ const SearchNews = () => {
       const data = await axios.get(
         `${process.env.REACT_APP_SERVER}/news?search=${search}`
       );
+
       if (data) {
-        setNewsArray(data.data);
+        if (data.data.length === 0) {
+          setNoResult(true);
+        } else {
+          setNoResult(false);
+          setNewsArray(data.data);
+        }
       }
     } catch (error) {
       toast.error(error.message);
@@ -53,8 +60,12 @@ const SearchNews = () => {
       </form>
 
       <div className="search-result-box">
-        {newsArray?.map((item, index) =>
-          item.image ? <News {...item} /> : null
+        {!noResult ? (
+          newsArray.map((item, index) =>
+            item.image ? <News {...item} /> : null
+          )
+        ) : (
+          <h4>No News Found</h4>
         )}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const PdfForm = () => {
   const [title, setTitle] = useState("");
@@ -25,17 +26,16 @@ const PdfForm = () => {
         data.set("title", title);
         data.set("newspaper", newspaper[0]);
 
-        const response = await fetch(
-          `${process.env.REACT_APP_SERVER}/newspaper/create`,
-          {
-            method: "POST",
-            body: data,
-          }
-        );
+        const response = await axios.post(`${process.env.REACT_APP_SERVER}/newspaper/create`,data)
 
-        if (response.ok) {
-          toast.success("Created Successfully");
-          navigate("/newspaper");
+        if (response) {
+          if(response.data.success === true){
+            toast.success(response.data.message);
+            navigate("/newspaper")
+          }
+          else{
+            toast.error(response.data.message);
+          }
         }
       } catch (error) {
         toast.error(error.message);
